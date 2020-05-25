@@ -47,12 +47,13 @@ terms = {
                           'hypothesis test','modeling','nosql','nlp',
                           'predictive','text mining','programming','python','r','sql','tableau',
                           'visualuzation', 'matlab','html','css','salesforce','autocad', 'c', 'java','project management'],
-        'Volunteer' : ['community','mentorship','mentor','mentee','events','leadership','industry'],
-        'Certificates' : ['python', 'r', 'statistics', 'blockchain', 'black belt','six sigma','leadership', 'java','c',
+        'Volunteer' : ['community','mentorship','mentor','mentee','events','leadership','industry', 'ieee'],
+        'Certificates' : ['python', 'r', 'statistics', 'blockchain', 'black belt','six sigma','leadership','c',
                         'automation', 'production']
         }
 
 #categorize
+count = 0
 Education = []
 Experience = []
 Skills = []
@@ -60,34 +61,41 @@ Volunteer = []
 Certificates = []
 
 #finding keywords in your resume and putting them into a list
+#count increment based on subjective weighting
 for area in terms.keys():
     if area == 'Education':
         for word in terms[area]:
             if word in text:
                 Education.append(word)
+                count += 1
 
     if area == 'Skills':
         for word in terms[area]:
             if word in text:
                 Skills.append(word)
+                count += 0.25
 
     if area == 'Experience':
         for word in terms[area]:
             if word in text:
                 Experience.append(word)
+                count += 1.5
 
     if area == 'Volunteer':
         for word in terms[area]:
             if word in text:
                 Volunteer.append(word)
+                count += 0.25
 
     if area == 'Certificates':
         for word in terms[area]:
             if word in text:
                 Certificates.append(word)
+                count += 0.25
 
-print('Education:',Education)
-print('Experience:',Experience)
-print('Skills:',Skills)
-print('Volunteer:', Volunteer)
-print('Certificates', Certificates)
+print('Education: ',Education)
+print('Experience: ',Experience)
+print('Skills: ',Skills)
+print('Volunteer: ', Volunteer)
+print('Certificates: ', Certificates)
+print('The user has scored:', count, 'points')
